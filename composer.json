@@ -1,0 +1,46 @@
+{
+    "name": "spatie/twitter-labs",
+    "description": "PHP client for Twitter Labs endpoints",
+    "keywords": [
+        "spatie",
+        "twitter-labs"
+    ],
+    "homepage": "https://github.com/spatie/twitter-labs",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Vanderbist",
+            "email": "alex@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "clue/buzz-react": "^2.6.1",
+        "league/oauth2-client": "^2.4",
+        "spatie/data-transfer-object": "v2.x-dev"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.3",
+        "phpunit/phpunit": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spatie\\TwitterLabs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\TwitterLabs\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
