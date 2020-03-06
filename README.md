@@ -1,3 +1,5 @@
+## **DO NOT USE: WIP**
+
 # PHP client for Twitter Labs endpoints
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
@@ -5,7 +7,6 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/twitter-labs.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/twitter-labs)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
 
-**DO NOT USE: WIP**
 
 >Twitter Developer Labs is where you’ll have early access to new API endpoints, features and versions. We’ll use Labs to test out new ideas and invite our developer community to share their feedback to help shape our roadmap.
 
