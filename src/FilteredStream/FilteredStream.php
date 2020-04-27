@@ -146,8 +146,10 @@ class FilteredStream
 
     public function connect(): self
     {
+        $expansions = 'author_id,referenced_tweets.id,referenced_tweets.id.author_id,attachments.media_keys';
+
         $this->client
-            ->getStream('https://api.twitter.com/labs/1/tweets/stream/filter')
+            ->getStream("https://api.twitter.com/labs/1/tweets/stream/filter?expansions={$expansions}")
             ->then(function (ResponseInterface $response) {
                 /* @var $stream \React\Stream\ReadableStreamInterface */
                 $stream = $response->getBody();

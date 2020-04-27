@@ -9,7 +9,8 @@ class Includes extends FlexibleDataTransferObject
     /** @var \Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Tweet[] $tweets */
 	public array $tweets;
 
-	public $users;
+    /** @var \Spatie\TwitterLabs\FilteredStream\Responses\Tweet\User[] $users */
+    public array $users;
 
 	/** @var \Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Place[] $places */
 	public array $places;
