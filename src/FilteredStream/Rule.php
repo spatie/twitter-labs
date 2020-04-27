@@ -13,6 +13,7 @@ class Rule implements JsonSerializable
     public function __construct(string $value, ?string $tag = null)
     {
         $this->value = $value;
+
         $this->tag = $tag;
     }
 

@@ -29,6 +29,7 @@ class FilteredStream
     public function __construct(Client $client, LoopInterface $loop)
     {
         $this->client = $client;
+
         $this->loop = $loop;
     }
 
@@ -196,11 +197,8 @@ class FilteredStream
                     ['matching_rules' => $data['matching_rules']]
                 ));
 
-                dump($tweet);
-
                 ($this->onTweet)($tweet);
             } catch (JsonException $jsonException) {
-                dump("Twitter sent some weird JSON: \n\r".$chunk."\n\rLet's ignore it for now.");
             }
         }
     }

@@ -27,6 +27,7 @@ class Client
     public function __construct(TwitterLabsOauthProvider $twitterLabsOauthProvider, LoopInterface $loop)
     {
         $this->twitterLabsOauthProvider = $twitterLabsOauthProvider;
+
         $this->loop = $loop;
     }
 
