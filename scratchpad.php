@@ -13,7 +13,7 @@ require_once "vendor/autoload.php";
 
 $loop = Factory::create();
 
-$filteredStream = FilteredStreamFactory::create('', '', $loop);
+$filteredStream = FilteredStreamFactory::create('l2ZFhWb9Vngq5C75XkGEmjPIk', 'dscDJojgVLiDy4HtncKaoGhrfhWw0JvpRnOpyBuKwhz0OTYEfU', $loop);
 
 // Connecting to stream
 $filteredStream->onTweet(fn(Tweet $tweet) => print($tweet->text . PHP_EOL));

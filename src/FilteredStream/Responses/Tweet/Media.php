@@ -8,9 +8,9 @@ class Media extends FlexibleDataTransferObject
 {
 	public string $media_key;
 
-	public string $height;
+	public int $height;
 
-	public string $width;
+	public int $width;
 
     public ?string $url;
 

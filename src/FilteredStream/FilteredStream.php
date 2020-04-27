@@ -194,7 +194,8 @@ class FilteredStream
 
                 $tweet = new Tweet(array_merge(
                     $data['data'],
-                    ['matching_rules' => $data['matching_rules']]
+                    ['matching_rules' => $data['matching_rules']],
+                    ['includes' => $data['includes']],
                 ));
 
                 ($this->onTweet)($tweet);

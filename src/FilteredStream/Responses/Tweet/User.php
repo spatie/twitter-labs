@@ -14,9 +14,9 @@ class User extends FlexibleDataTransferObject
 
     public bool $protected;
 
-    public string $location;
+    public ?string $location;
 
-    public string $url;
+    public ?string $url;
 
     public string $description;
 
@@ -27,7 +27,7 @@ class User extends FlexibleDataTransferObject
 
     public string $profile_image_url;
 
-    public string $most_recent_tweet_id;
+    public ?string $most_recent_tweet_id;
 
     public string $format;
 }
