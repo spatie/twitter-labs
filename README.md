@@ -8,13 +8,15 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
 
 
+
+
+This package aims to implement some of the realtime endpoints exposed by Twitter's new API, as the old realtime streams are being deprecated. 
+
 >Twitter Developer Labs is where you’ll have early access to new API endpoints, features and versions. We’ll use Labs to test out new ideas and invite our developer community to share their feedback to help shape our roadmap.
 
 _(from the Twitter Developer Labs website)_
 
-This package aims to implement some of the realtime endpoints exposed by Twitter's new API, as the old realtime streams are being deprecated. 
-
-Under the hood this is using ReactPHP for everything async. Even though you can use the package with no knowledge of ReactPHP, it is recommended to familiarize yourself with its [event loop](https://reactphp.org/event-loop/) concept.
+Under the hood this is using [ReactPHP](https://reactphp.org) for everything async. Even though you can use the package with no knowledge of ReactPHP, it is recommended to familiarize yourself with its [event loop](https://reactphp.org/event-loop/) concept.
 
 If you're currently using our old [twitter-streaming-api package](https://github.com/spatie/twitter-streaming-api), making the switch to this package should be easy.
 
@@ -28,11 +30,11 @@ composer require spatie/twitter-labs
 
 ## Usage
 
-Currently only the filtered stream endpoints are implemented. We're accepting PRs for the other features Twitter Labs exposes.
+Currently, only the filtered stream endpoints are implemented. We accept PRs for the other features Twitter Labs exposes.
 
 ### Filtered stream
 
-Twitter Labs filtered stream API docs: https://developer.twitter.com/en/docs/labs/filtered-stream/overview
+You can find the Twitter Labs filtered stream API docs [here](https://developer.twitter.com/en/docs/labs/filtered-stream/overview). 
 
 Twitter's filtered stream consists of one streaming endpoint that returns tweets in realtime and three endpoints to control what tweets are included in the realtime endpoint:
 
@@ -57,6 +59,8 @@ $filteredStrean
     ->start();
 ```
 
+The event loop will start when calling  `start`. All code after this call will not be executed.
+
 #### Managing filters/rules
 
 Filters for realtime streams work slightly different in Twitter Labs compared to the old Twitter API. The main difference being that filter rules are actually stored per API key and are always applied when connecting to the stream. When adding or removing rules, these changes are also applied in realtime to the streaming endpoint without having to reconnect.
@@ -72,7 +76,7 @@ The following methods are available to manage filter rules:
 - `public function getRules(?string ...$ids): PromiseInterface`
   promise resolves to `\Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse`
   
-⚠ You need to run the event loop to use these endpoints!
+⚠ You need to run the event loop to use these endpoints.
 
 Basic example that adds a rule:
 
