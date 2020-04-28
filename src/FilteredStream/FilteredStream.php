@@ -192,8 +192,6 @@ class FilteredStream
             try {
                 $data = json_decode($chunk, $assoc = true, $depth = 512, JSON_THROW_ON_ERROR);
 
-                dump($data);
-
                 $tweet = new Tweet(array_merge(
                     $data['data'],
                     ['matching_rules' => $data['matching_rules']],
