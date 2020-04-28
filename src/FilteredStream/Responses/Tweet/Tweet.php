@@ -40,8 +40,8 @@ class Tweet extends FlexibleDataTransferObject
 
 	public ?string $source;
 
-    /** @var null|\Spatie\TwitterLabs\FilteredStream\Responses\Tweet\ContextAnnotations */
-    public ?ContextAnnotations $context_annotations;
+    /** @var null|\Spatie\TwitterLabs\FilteredStream\Responses\Tweet\ContextAnnotation[] */
+    public ?array $context_annotations;
 
 	public ?string $format;
 

@@ -10,5 +10,5 @@ class Entity extends FlexibleDataTransferObject
 
 	public string $name;
 
-	public string $description;
+	public ?string $description;
 }

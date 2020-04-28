@@ -150,7 +150,7 @@ class FilteredStream
         $expansions = 'author_id,referenced_tweets.id,referenced_tweets.id.author_id,attachments.media_keys';
 
         $this->client
-            ->getStream("https://api.twitter.com/labs/1/tweets/stream/filter?expansions={$expansions}")
+            ->getStream("https://api.twitter.com/labs/1/tweets/stream/filter?expansions={$expansions}&format=detailed")
             ->then(function (ResponseInterface $response) {
                 /* @var $stream \React\Stream\ReadableStreamInterface */
                 $stream = $response->getBody();
@@ -191,6 +191,8 @@ class FilteredStream
         foreach ($chunks as $chunk) {
             try {
                 $data = json_decode($chunk, $assoc = true, $depth = 512, JSON_THROW_ON_ERROR);
+
+                dump($data);
 
                 $tweet = new Tweet(array_merge(
                     $data['data'],

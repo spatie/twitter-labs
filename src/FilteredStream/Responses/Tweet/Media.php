@@ -16,7 +16,7 @@ class Media extends FlexibleDataTransferObject
 
     public ?string $preview_image_url;
 
-	public ?string $duration_ms;
+	public ?int $duration_ms;
 
 	public string $type;
 }

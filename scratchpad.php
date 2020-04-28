@@ -17,10 +17,10 @@ $filteredStream = FilteredStreamFactory::create('l2ZFhWb9Vngq5C75XkGEmjPIk', 'ds
 
 // Connecting to stream
 $filteredStream->onTweet(fn(Tweet $tweet) => print($tweet->text . PHP_EOL));
-$filteredStream->connect();
-
-$loop->run();
-// $filteredStream->start();
+//$filteredStream->connect();
+//
+//$loop->run();
+ $filteredStream->start();
 
 
 
