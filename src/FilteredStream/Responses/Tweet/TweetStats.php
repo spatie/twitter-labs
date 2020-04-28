@@ -4,7 +4,7 @@ namespace Spatie\TwitterLabs\FilteredStream\Responses\Tweet;
 
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Stats extends FlexibleDataTransferObject
+class TweetStats extends FlexibleDataTransferObject
 {
 	public int $retweet_count;
 

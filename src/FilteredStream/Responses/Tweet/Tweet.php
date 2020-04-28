@@ -31,8 +31,8 @@ class Tweet extends FlexibleDataTransferObject
     /** @var null|\Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Withheld */
     public ?Withheld $withheld;
 
-    /** @var null|\Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Stats */
-	public ?Stats $stats;
+    /** @var null|\Spatie\TwitterLabs\FilteredStream\Responses\Tweet\TweetStats */
+	public ?TweetStats $stats;
 
 	public ?bool $possibly_sensitive;
 

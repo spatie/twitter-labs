@@ -12,6 +12,8 @@ class User extends FlexibleDataTransferObject
 
     public string $name;
 
+    public string $username;
+
     public bool $protected;
 
     public ?string $location;
@@ -26,6 +28,9 @@ class User extends FlexibleDataTransferObject
     public ?Entities $entities;
 
     public string $profile_image_url;
+
+    /** @var \Spatie\TwitterLabs\FilteredStream\Responses\Tweet\UserStats */
+    public UserStats $stats;
 
     public ?string $most_recent_tweet_id;
 
