@@ -20,7 +20,7 @@
         "ext-json": "*",
         "clue/buzz-react": "^2.6.1",
         "league/oauth2-client": "^2.4",
-        "spatie/data-transfer-object": "v2.x-dev"
+        "spatie/data-transfer-object": "^2.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.3",
