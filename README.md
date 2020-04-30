@@ -1,5 +1,3 @@
-## **DO NOT USE: WIP**
-
 # PHP client for Twitter Labs endpoints
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
