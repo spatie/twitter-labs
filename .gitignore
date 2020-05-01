@@ -5,4 +5,5 @@ vendor
 coverage
 .phpunit.result.cache
 .idea
-scratchpad.php
+.php_cs.cache
+
