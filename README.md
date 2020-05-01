@@ -41,10 +41,10 @@ You can find the Twitter Labs filtered stream API docs [here](https://developer.
 
 Twitter's filtered stream consists of one streaming endpoint that returns tweets in realtime and three endpoints to control what tweets are included in the realtime endpoint:
 
-- GET /labs/1/tweets/stream/filter (realtime)
-- POST /labs/1/tweets/stream/filter/rules (delete)
-- GET /labs/1/tweets/stream/filter/rules
-- POST /labs/1/tweets/stream/filter/rules (create)
+- `GET /labs/1/tweets/stream/filter` (realtime)
+- `POST /labs/1/tweets/stream/filter/rules` (delete)
+- `GET /labs/1/tweets/stream/filter/rules`
+- `POST /labs/1/tweets/stream/filter/rules` (create)
 
 To use any of these filtered stream endpoints, you'll need a `FilteredStream` instance. Use the `\Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory` to create this instance for you. The factory's `create` method takes your API credentials and optionally and event loop instance.
 
@@ -74,8 +74,9 @@ The following methods are available to manage filter rules:
 public function asyncAddRule(\Spatie\TwitterLabs\FilteredStream\Rule $rule): PromiseInterface;
 public function asyncAddRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface; 
 public function asyncDeleteRules(string ...$ruleIds): PromiseInterface; 
-public function setRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface;
+public function asyncSetRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface;
 public function asyncGetRules(): PromiseInterface;
+
 public function addRule(\Spatie\TwitterLabs\FilteredStream\Rule $rule): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\AddRulesResponse;
 public function addRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\AddRulesResponse;
 public function deleteRules(string ...$ruleIds): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\DeleteRulesResponse;
@@ -115,7 +116,6 @@ Example that syncs rules by getting all existing rules, then deleting them and a
 ```php
 use React\EventLoop\Factory;
 use Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory;
-use Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse;
 use Spatie\TwitterLabs\FilteredStream\Rule;
 
 $loop = Factory::create();
