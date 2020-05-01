@@ -216,12 +216,11 @@ class FilteredStream
             $promiseResult = $result;
 
             $this->loop->stop();
-        })
-            ->otherwise(function (Exception $exception) use (&$promiseException) {
-                $promiseException = $exception;
+        })->otherwise(function (Exception $exception) use (&$promiseException) {
+            $promiseException = $exception;
 
-                $this->loop->stop();
-            });
+            $this->loop->stop();
+        });
 
         $this->loop->run();
 
