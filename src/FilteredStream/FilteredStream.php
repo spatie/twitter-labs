@@ -4,6 +4,7 @@
 namespace Spatie\TwitterLabs\FilteredStream;
 
 
+use Error;
 use Exception;
 use JsonException;
 use Psr\Http\Message\ResponseInterface;
@@ -60,7 +61,7 @@ class FilteredStream
                 } catch (Throwable $exception) {
                     $deferred->reject($exception);
                 }
-            }, fn(\Exception $exception) => $deferred->reject($exception));
+            }, fn(Throwable $exception) => $deferred->reject($exception));
 
         return $deferred->promise();
     }
@@ -86,7 +87,7 @@ class FilteredStream
                 } catch (Throwable $exception) {
                     $deferred->reject($exception);
                 }
-            }, fn(Throwable $exception) => $deferred->reject($exception));
+            }, fn(Throwable $reason) => $deferred->reject($reason));
 
         return $deferred->promise();
     }
@@ -105,7 +106,7 @@ class FilteredStream
             ->then(fn(array $ruleIds) => empty($ruleIds) ? null : $this->asyncDeleteRules(...$ruleIds))
             ->then(fn() => $this->asyncAddRules(...$rules))
             ->then(fn(AddRulesResponse $addRulesResponse) => $deferred->resolve($addRulesResponse))
-            ->otherwise(fn(Throwable $exception) => $deferred->reject($exception));
+            ->otherwise(fn(Throwable $reason) => $deferred->reject($reason));
 
         return $deferred->promise();
     }
@@ -129,7 +130,9 @@ class FilteredStream
                 } catch (Throwable $exception) {
                     $deferred->reject($exception);
                 }
-            }, fn(\Exception $exception) => $deferred->reject($exception));
+            }, function (Throwable $reason) use ($deferred) {
+                return $deferred->reject($reason);
+            });
 
         return $deferred->promise();
     }
@@ -216,7 +219,7 @@ class FilteredStream
             $promiseResult = $result;
 
             $this->loop->stop();
-        })->otherwise(function (Exception $exception) use (&$promiseException) {
+        })->otherwise(function (Throwable $exception) use (&$promiseException) {
             $promiseException = $exception;
 
             $this->loop->stop();
