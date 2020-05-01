@@ -4,7 +4,7 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/twitter-labs/run-tests?label=tests)](https://github.com/spatie/twitter-labs/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
 
-This package aims to implement some of the realtime endpoints exposed by Twitter's new API, as the old realtime streams are being deprecated. 
+This package aims to implement some of the realtime endpoints exposed by Twitter's new API, as the old realtime Twitter streams are being deprecated. 
 
 >Twitter Developer Labs is where you’ll have early access to new API endpoints, features and versions. We’ll use Labs to test out new ideas and invite our developer community to share their feedback to help shape our roadmap.
 
@@ -31,9 +31,11 @@ composer require spatie/twitter-labs
 
 ## Usage
 
-Currently, only the filtered stream endpoints are implemented. We accept PRs for the other features Twitter Labs exposes.
+Currently, only the **filtered stream endpoints** are implemented. We accept PRs for the other features Twitter Labs exposes.
 
-### Filtered stream
+⚠ You'll need a Twitter Developer account with Twitter Dev Labs access enabled and an application that's enrolled in the filtered streams preview. Have a look at https://developer.twitter.com/en/labs.
+
+### Filtered streams overview
 
 You can find the Twitter Labs filtered stream API docs [here](https://developer.twitter.com/en/docs/labs/filtered-stream/overview). 
 
@@ -46,10 +48,10 @@ Twitter's filtered stream consists of one streaming endpoint that returns tweets
 
 To use any of these filtered stream endpoints, you'll need a `FilteredStream` instance. Use the `\Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory` to create this instance for you. The factory's `create` method takes your API credentials and optionally and event loop instance.
 
-#### Basic usage
+### Basic usage: listening for Tweets
 
 ``` php
-$filteredStream = \Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory::create('token', 'secret');
+$filteredStream = \Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory::create('twitter api token', 'twitter api secret');
 
 $filteredStream->addRule(
     new \Spatie\TwitterLabs\FilteredStream\Rule('cat has:media', 'cat photos')
@@ -60,7 +62,7 @@ $filteredStrean
     ->start();
 ```
 
-The event loop will start when calling  `start`. All code after this call will not be executed.
+The event loop will start when calling `start`. All code after this call will not be executed unless something goes wrong and the event loop is stopped.
 
 #### Managing filters/rules
 
@@ -68,18 +70,32 @@ Filters for realtime streams work slightly different in Twitter Labs compared to
 
 The following methods are available to manage filter rules:
 
-- `public function addRule(\Spatie\TwitterLabs\FilteredStream\Rule $rule): PromiseInterface` 
-  promise resolves to `\Spatie\TwitterLabs\FilteredStream\Responses\Rules\AddRulesResponse`
-- `public function addRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface` 
-  promise resolves to `\Spatie\TwitterLabs\FilteredStream\Responses\Rules\AddRulesResponse`
-- `public function deleteRules(string ...$ruleIds): PromiseInterface` 
-  promise resolves to `\Spatie\TwitterLabs\FilteredStream\Responses\Rules\DeleteRulesResponse`
-- `public function getRules(?string ...$ids): PromiseInterface`
-  promise resolves to `\Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse`
+```php
+public function asyncAddRule(\Spatie\TwitterLabs\FilteredStream\Rule $rule): PromiseInterface;
+public function asyncAddRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface; 
+public function asyncDeleteRules(string ...$ruleIds): PromiseInterface; 
+public function setRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface;
+public function asyncGetRules(): PromiseInterface;
+public function addRule(\Spatie\TwitterLabs\FilteredStream\Rule $rule): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\AddRulesResponse;
+public function addRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\AddRulesResponse;
+public function deleteRules(string ...$ruleIds): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\DeleteRulesResponse;
+public function setRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse;
+public function getRules(): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse;
+```
   
-⚠ You need to run the event loop to use these endpoints.
+You can either use `async` endpoints asynchronously (don't forget to run `$filteredStream->run()` to start the event loop) or use the regular endpoint synchronously.
 
 Basic example that adds a rule:
+
+```php
+use Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory;
+use Spatie\TwitterLabs\FilteredStream\Rule;
+
+FilteredStreamFactory::create('token', 'secret')
+    ->addRule(new Rule('@spatie_be', 'mentioning_spatie'));
+```
+
+Basic example that adds a rule asynchronously (can be combined with other tasks running in the same event loop):
 
 ```php
 use React\EventLoop\Factory;
@@ -94,7 +110,7 @@ FilteredStreamFactory::create('token', 'secret', $loop)
 $loop->run();
 ```
 
-Advanced example that gets all existing rules, then deletes them and adds a new rule.
+Example that syncs rules by getting all existing rules, then deleting them and adding the new rules.
 
 ```php
 use React\EventLoop\Factory;
@@ -105,23 +121,7 @@ use Spatie\TwitterLabs\FilteredStream\Rule;
 $loop = Factory::create();
 
 FilteredStreamFactory::create('token', 'secret', $loop)
-    ->asyncGetRules()
-    ->then(
-        function (ListRulesResponse $listRulesResponse) use ($rules, $filteredStream) {
-            $ruleIds = $listRulesResponse->getRuleIds();
-
-            if ($ruleIds) {
-                $filteredStream
-                    ->asyncDeleteRules(...$ruleIds)
-                    ->then(fn ($r) => true, fn($e) => print($e));
-            }
-
-            $filteredStream
-                ->asyncAddRules(new Rule('cat photos'))
-                ->then(fn ($r) => true, fn($e) => print($e));
-        },
-        fn($error) => print($error),
-    );
+    ->asyncSetRules(new Rule('cat photos')); // or use `setRules()` synchronously
 
 $loop->run();
 ```
@@ -147,7 +147,6 @@ $loop->run();
 As a shorthand, `$filteredStream->start()` is also available. It will connect to the realtime endpoint and start the event loop, even when no event loop was given. This is especially nice when you don't need the event loop anywhere else:
 
 ```php
-use React\EventLoop\Factory;
 use Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Tweet;
 use Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory;
 
