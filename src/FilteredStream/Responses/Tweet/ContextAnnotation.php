@@ -7,8 +7,8 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class ContextAnnotation extends FlexibleDataTransferObject
 {
     /** @var \Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Domain */
-	public Domain $domain;
+    public Domain $domain;
 
-	/** @var \Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Entity */
-	public Entity $entity;
+    /** @var \Spatie\TwitterLabs\FilteredStream\Responses\Tweet\Entity */
+    public Entity $entity;
 }

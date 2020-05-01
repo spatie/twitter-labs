@@ -6,8 +6,8 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Attachments extends FlexibleDataTransferObject
 {
-	public ?array $media_keys;
+    public ?array $media_keys;
 
-	/** @var null|string[] $poll_ids */
-	public ?array $poll_ids;
+    /** @var null|string[] */
+    public ?array $poll_ids;
 }

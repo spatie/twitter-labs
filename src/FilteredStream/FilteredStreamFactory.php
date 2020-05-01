@@ -3,11 +3,9 @@
 
 namespace Spatie\TwitterLabs\FilteredStream;
 
-
 use React\EventLoop\Factory as LoopFactory;
 use React\EventLoop\LoopInterface;
 use Spatie\TwitterLabs\Client;
-use Spatie\TwitterLabs\FilteredStream\FilteredStream;
 use Spatie\TwitterLabs\TwitterLabsOauthProvider;
 
 class FilteredStreamFactory

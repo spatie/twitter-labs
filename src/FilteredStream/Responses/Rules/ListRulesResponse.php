@@ -14,6 +14,6 @@ class ListRulesResponse extends DataTransferObject
 
     public function getRuleIds(): array
     {
-        return array_map(fn(RuleData $ruleData) => $ruleData->id, $this->data ?? []);
+        return array_map(fn (RuleData $ruleData) => $ruleData->id, $this->data ?? []);
     }
 }

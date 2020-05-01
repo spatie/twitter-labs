@@ -3,8 +3,6 @@
 namespace Spatie\TwitterLabs;
 
 use Clue\React\Buzz\Browser;
-use Clue\React\Buzz\Message\MessageFactory;
-use Exception;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -13,7 +11,6 @@ use React\Promise\Deferred;
 use React\Promise\PromiseInterface;
 use RingCentral\Psr7\Request;
 use Spatie\TwitterLabs\Exceptions\OauthException;
-use Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse;
 use Throwable;
 
 class Client
@@ -96,7 +93,7 @@ class Client
                 $data = json_decode($response->getBody(), $assoc = true, $depth = 512, JSON_THROW_ON_ERROR);
 
                 $deferred->resolve($data);
-            }, fn(Throwable $exception) => $deferred->reject($exception));
+            }, fn (Throwable $exception) => $deferred->reject($exception));
 
         return $deferred->promise();
     }

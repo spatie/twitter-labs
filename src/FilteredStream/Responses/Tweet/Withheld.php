@@ -6,10 +6,10 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Withheld extends FlexibleDataTransferObject
 {
-	public bool $copyright;
+    public bool $copyright;
 
-	/** @var string[] $country_codes */
-	public array $country_codes;
+    /** @var string[] */
+    public array $country_codes;
 
-	public ?string $scope;
+    public ?string $scope;
 }

@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class MatchingRule extends FlexibleDataTransferObject
 {
-	public string $id;
+    public string $id;
 
-	public ?string $tag;
+    public ?string $tag;
 }

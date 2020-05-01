@@ -6,11 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class TweetStats extends FlexibleDataTransferObject
 {
-	public int $retweet_count;
+    public int $retweet_count;
 
-	public int $reply_count;
+    public int $reply_count;
 
-	public int $like_count;
+    public int $like_count;
 
-	public int $quote_count;
+    public int $quote_count;
 }

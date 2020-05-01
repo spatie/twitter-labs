@@ -6,11 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Options extends FlexibleDataTransferObject
 {
-	public string $position;
+    public string $position;
 
-	public string $label;
+    public string $label;
 
-	public string $votes;
+    public string $votes;
 
-	public string $voting_status;
+    public string $voting_status;
 }

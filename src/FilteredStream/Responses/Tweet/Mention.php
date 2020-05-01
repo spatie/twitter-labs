@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Mention extends FlexibleDataTransferObject
 {
-	public int $start;
+    public int $start;
 
-	public int $end;
+    public int $end;
 
-	public string $username;
+    public string $username;
 }

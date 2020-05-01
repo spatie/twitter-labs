@@ -6,13 +6,13 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Annotation extends FlexibleDataTransferObject
 {
-	public int $start;
+    public int $start;
 
-	public int $end;
+    public int $end;
 
-	public ?float $probability;
+    public ?float $probability;
 
-	public ?string $type;
+    public ?string $type;
 
-	public ?string $normalized_text;
+    public ?string $normalized_text;
 }

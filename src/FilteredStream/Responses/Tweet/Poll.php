@@ -6,11 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Poll extends FlexibleDataTransferObject
 {
-	public string $id;
+    public string $id;
 
-	public Options $options;
+    public Options $options;
 
-	public int $end_datetime;
+    public int $end_datetime;
 
-	public string $duration_minutes;
+    public string $duration_minutes;
 }

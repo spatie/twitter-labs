@@ -3,9 +3,6 @@
 
 namespace Spatie\TwitterLabs\FilteredStream;
 
-
-use Error;
-use Exception;
 use JsonException;
 use Psr\Http\Message\ResponseInterface;
 use React\EventLoop\LoopInterface;
@@ -61,7 +58,7 @@ class FilteredStream
                 } catch (Throwable $exception) {
                     $deferred->reject($exception);
                 }
-            }, fn(Throwable $exception) => $deferred->reject($exception));
+            }, fn (Throwable $exception) => $deferred->reject($exception));
 
         return $deferred->promise();
     }
@@ -87,7 +84,7 @@ class FilteredStream
                 } catch (Throwable $exception) {
                     $deferred->reject($exception);
                 }
-            }, fn(Throwable $reason) => $deferred->reject($reason));
+            }, fn (Throwable $reason) => $deferred->reject($reason));
 
         return $deferred->promise();
     }
@@ -102,11 +99,11 @@ class FilteredStream
         $deferred = new Deferred();
 
         $this->asyncGetRules()
-            ->then(fn(ListRulesResponse $listRulesResponse) => $listRulesResponse->getRuleIds())
-            ->then(fn(array $ruleIds) => empty($ruleIds) ? null : $this->asyncDeleteRules(...$ruleIds))
-            ->then(fn() => $this->asyncAddRules(...$rules))
-            ->then(fn(AddRulesResponse $addRulesResponse) => $deferred->resolve($addRulesResponse))
-            ->otherwise(fn(Throwable $reason) => $deferred->reject($reason));
+            ->then(fn (ListRulesResponse $listRulesResponse) => $listRulesResponse->getRuleIds())
+            ->then(fn (array $ruleIds) => empty($ruleIds) ? null : $this->asyncDeleteRules(...$ruleIds))
+            ->then(fn () => $this->asyncAddRules(...$rules))
+            ->then(fn (AddRulesResponse $addRulesResponse) => $deferred->resolve($addRulesResponse))
+            ->otherwise(fn (Throwable $reason) => $deferred->reject($reason));
 
         return $deferred->promise();
     }
@@ -159,12 +156,11 @@ class FilteredStream
                 /* @var $stream \React\Stream\ReadableStreamInterface */
                 $stream = $response->getBody();
 
-                $stream->on('data', fn(string $data) => $this->processStreamData($data));
+                $stream->on('data', fn (string $data) => $this->processStreamData($data));
 
-                $stream->on('error', fn(Throwable $error) => print('Error: ' . $error->getMessage() . PHP_EOL));
+                $stream->on('error', fn (Throwable $error) => print('Error: ' . $error->getMessage() . PHP_EOL));
 
-                $stream->on('close', fn() => print('Connection closed.' . PHP_EOL));
-
+                $stream->on('close', fn () => print('Connection closed.' . PHP_EOL));
             }, function (Throwable $error) {
                 throw $error;
             });
@@ -189,7 +185,7 @@ class FilteredStream
         }
 
         $chunks = explode("\n", $data);
-        $chunks = array_map(fn(string $chunk) => trim($chunk), $chunks);
+        $chunks = array_map(fn (string $chunk) => trim($chunk), $chunks);
         $chunks = array_filter($chunks);
 
         foreach ($chunks as $chunk) {

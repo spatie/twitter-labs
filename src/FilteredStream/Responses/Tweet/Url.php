@@ -6,19 +6,19 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Url extends FlexibleDataTransferObject
 {
-	public int $start;
+    public int $start;
 
-	public int $end;
+    public int $end;
 
-	public string $url;
+    public string $url;
 
-	public ?string $expanded_url;
+    public ?string $expanded_url;
 
-	public ?string $display_url;
+    public ?string $display_url;
 
-	public ?int $status;
+    public ?int $status;
 
-	public ?string $title;
+    public ?string $title;
 
-	public ?string $description;
+    public ?string $description;
 }

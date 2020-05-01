@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Entity extends FlexibleDataTransferObject
 {
-	public string $id;
+    public string $id;
 
-	public string $name;
+    public string $name;
 
-	public ?string $description;
+    public ?string $description;
 }

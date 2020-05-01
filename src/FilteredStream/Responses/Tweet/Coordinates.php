@@ -6,10 +6,10 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Coordinates extends FlexibleDataTransferObject
 {
-	public string $type;
+    public string $type;
 
-	/** @var null|float[] */
-	public ?array $coordinates;
+    /** @var null|float[] */
+    public ?array $coordinates;
 
-	public ?string $properties;
+    public ?string $properties;
 }

@@ -6,19 +6,19 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Place extends FlexibleDataTransferObject
 {
-	public string $id;
+    public string $id;
 
-	public string $name;
+    public string $name;
 
-	public string $full_name;
+    public string $full_name;
 
-	public string $place_type;
+    public string $place_type;
 
-	public string $country_code;
+    public string $country_code;
 
-	public string $country;
+    public string $country;
 
-	public string $contained_within;
+    public string $contained_within;
 
-	public Geo $geo;
+    public Geo $geo;
 }

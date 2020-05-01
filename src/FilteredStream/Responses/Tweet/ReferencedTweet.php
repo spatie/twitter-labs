@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class ReferencedTweet extends FlexibleDataTransferObject
 {
-	public string $type;
+    public string $type;
 
-	public string $id;
+    public string $id;
 }
