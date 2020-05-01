@@ -4,6 +4,7 @@
 namespace Spatie\TwitterLabs\FilteredStream;
 
 
+use Exception;
 use JsonException;
 use Psr\Http\Message\ResponseInterface;
 use React\EventLoop\LoopInterface;
@@ -215,9 +216,18 @@ class FilteredStream
             $promiseResult = $result;
 
             $this->loop->stop();
-        });
+        })
+            ->otherwise(function (Exception $exception) use (&$promiseException) {
+                $promiseException = $exception;
+
+                $this->loop->stop();
+            });
 
         $this->loop->run();
+
+        if ($promiseException) {
+            throw $promiseException;
+        }
 
         return $promiseResult;
     }
