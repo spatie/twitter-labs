@@ -16,7 +16,7 @@ class AddRulesResponse extends DataTransferObject
 
     public function hasErrors(): bool
     {
-        return ! is_null($this->errors);
+        return ! empty($this->errors);
     }
 
     public function amountCreated(): int

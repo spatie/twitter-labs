@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\TwitterLabs\Tests;
+namespace Spatie\TwitterLabs\Tests\FilteredStream;
 
 use Mockery;
 use React\EventLoop\Factory;
@@ -12,6 +12,7 @@ use Spatie\TwitterLabs\FilteredStream\Responses\Rules\AddRulesResponse;
 use Spatie\TwitterLabs\FilteredStream\Responses\Rules\DeleteRulesResponse;
 use Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse;
 use Spatie\TwitterLabs\FilteredStream\Rule;
+use Spatie\TwitterLabs\Tests\TestCase;
 
 class FilteredStreamTest extends TestCase
 {

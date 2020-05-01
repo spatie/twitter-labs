@@ -1,8 +1,9 @@
 <?php
 
-namespace Spatie\TwitterLabs\Tests;
+namespace Spatie\TwitterLabs\Tests\FilteredStream;
 
 use Spatie\TwitterLabs\FilteredStream\Rule;
+use Spatie\TwitterLabs\Tests\TestCase;
 
 class RuleTest extends TestCase
 {
@@ -13,6 +14,7 @@ class RuleTest extends TestCase
 
         $this->assertEquals(['value' => '#filter', 'tag' => null], $rule->toArray());
     }
+
     /** @test */
     public function a_rule_can_consist_of_a_filter_and_a_tag()
     {

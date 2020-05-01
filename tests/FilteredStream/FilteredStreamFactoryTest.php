@@ -1,11 +1,12 @@
 <?php
 
-namespace Spatie\TwitterLabs\Tests;
+namespace Spatie\TwitterLabs\Tests\FilteredStream;
 
 use React\EventLoop\Factory;
 use Spatie\TwitterLabs\Client;
 use Spatie\TwitterLabs\FilteredStream\FilteredStream;
 use Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory;
+use Spatie\TwitterLabs\Tests\TestCase;
 use Spatie\TwitterLabs\TwitterLabsOauthProvider;
 
 class FilteredStreamFactoryTest extends TestCase
