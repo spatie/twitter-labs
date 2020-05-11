@@ -166,7 +166,7 @@ class FilteredStream
                 $stream->on('close', fn() => print('Connection closed.' . PHP_EOL));
             })
             ->otherwise(function (ResponseException $exception) {
-                print($exception->getMessage().PHP_EOL.$exception->getResponse()->getBody());
+                print($exception.PHP_EOL.$exception->getResponse()->getBody());
             })
             ->otherwise(function (Exception $exception) {
                 print($exception);
