@@ -56,9 +56,9 @@ $filteredStream = \Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory::crea
 
 $filteredStream->addRule(
     new \Spatie\TwitterLabs\FilteredStream\Rule('cat has:media', 'cat photos')
-)
+);
 
-$filteredStrean
+$filteredStream
     ->onTweet(fn (Tweet $tweet) => print($tweet->text . PHP_EOL))
     ->start();
 ```
