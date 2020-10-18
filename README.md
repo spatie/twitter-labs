@@ -4,9 +4,9 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/twitter-labs/run-tests?label=tests)](https://github.com/spatie/twitter-labs/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
 
-This package aims to implement some of the realtime endpoints exposed by Twitter's new API, as the old realtime Twitter streams are being deprecated. 
+This package aims to implement some of the realtime endpoints exposed by Twitter's new API, as the old realtime Twitter streams are being deprecated.
 
->Twitter Developer Labs is where you’ll have early access to new API endpoints, features and versions. We’ll use Labs to test out new ideas and invite our developer community to share their feedback to help shape our roadmap.
+> Twitter Developer Labs is where you’ll have early access to new API endpoints, features and versions. We’ll use Labs to test out new ideas and invite our developer community to share their feedback to help shape our roadmap.
 
 _(from the Twitter Developer Labs website)_
 
@@ -38,27 +38,27 @@ Currently, only the **filtered stream endpoints** are implemented. We accept PRs
 
 ### Filtered streams overview
 
-You can find the Twitter Labs filtered stream API docs [here](https://developer.twitter.com/en/docs/labs/filtered-stream/overview). 
+You can find the Twitter Labs filtered stream API docs [here](https://developer.twitter.com/en/docs/labs/filtered-stream/overview).
 
 Twitter's filtered stream consists of one streaming endpoint that returns tweets in realtime and three endpoints to control what tweets are included in the realtime endpoint:
 
-- `GET /labs/1/tweets/stream/filter` (realtime)
-- `POST /labs/1/tweets/stream/filter/rules` (delete)
-- `GET /labs/1/tweets/stream/filter/rules`
-- `POST /labs/1/tweets/stream/filter/rules` (create)
+-   `GET /labs/1/tweets/stream/filter` (realtime)
+-   `POST /labs/1/tweets/stream/filter/rules` (delete)
+-   `GET /labs/1/tweets/stream/filter/rules`
+-   `POST /labs/1/tweets/stream/filter/rules` (create)
 
 To use any of these filtered stream endpoints, you'll need a `FilteredStream` instance. Use the `\Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory` to create this instance for you. The factory's `create` method takes your API credentials and optionally and event loop instance.
 
 ### Basic usage: listening for Tweets
 
-``` php
+```php
 $filteredStream = \Spatie\TwitterLabs\FilteredStream\FilteredStreamFactory::create('twitter api token', 'twitter api secret');
 
 $filteredStream->addRule(
     new \Spatie\TwitterLabs\FilteredStream\Rule('cat has:media', 'cat photos')
-)
+);
 
-$filteredStrean
+$filteredStream
     ->onTweet(fn (Tweet $tweet) => print($tweet->text . PHP_EOL))
     ->start();
 ```
@@ -73,8 +73,8 @@ The following methods are available to manage filter rules:
 
 ```php
 public function asyncAddRule(\Spatie\TwitterLabs\FilteredStream\Rule $rule): PromiseInterface;
-public function asyncAddRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface; 
-public function asyncDeleteRules(string ...$ruleIds): PromiseInterface; 
+public function asyncAddRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface;
+public function asyncDeleteRules(string ...$ruleIds): PromiseInterface;
 public function asyncSetRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): PromiseInterface;
 public function asyncGetRules(): PromiseInterface;
 
@@ -84,7 +84,7 @@ public function deleteRules(string ...$ruleIds): \Spatie\TwitterLabs\FilteredStr
 public function setRules(\Spatie\TwitterLabs\FilteredStream\Rule ...$rules): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse;
 public function getRules(): \Spatie\TwitterLabs\FilteredStream\Responses\Rules\ListRulesResponse;
 ```
-  
+
 You can either use `async` endpoints asynchronously (don't forget to run `$filteredStream->run()` to start the event loop) or use the regular endpoint synchronously.
 
 Basic example that adds a rule:
@@ -158,7 +158,7 @@ FilteredStreamFactory::create('token', 'secret')
 
 ### Testing
 
-``` bash
+```bash
 composer test
 ```
 
@@ -176,8 +176,8 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Credits
 
-- [Alex Vanderbist](https://github.com/AlexVanderbist)
-- [All Contributors](../../contributors)
+-   [Alex Vanderbist](https://github.com/AlexVanderbist)
+-   [All Contributors](../../contributors)
 
 ## License
 
