@@ -1,7 +1,7 @@
 # PHP client for Twitter Labs endpoints
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/twitter-labs/run-tests?label=tests)](https://github.com/spatie/twitter-labs/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![GitHub Tests Action Status](https://github.com/spatie/twitter-labs/actions/workflows/run-tests.yml/badge.svg)](https://github.com/spatie/twitter-labs/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/twitter-labs.svg?style=flat-square)](https://packagist.org/packages/spatie/twitter-labs)
 
 This package aims to implement some of the realtime endpoints exposed by Twitter's new API, as the old realtime Twitter streams are being deprecated. 
